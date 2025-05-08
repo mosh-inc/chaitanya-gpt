@@ -56,9 +56,10 @@ async function sendMessage() {
         // Show typing indicator
         showTypingIndicator();
         isTyping = true;
+        sendButton.disabled = true; // Disable the button while processing
         
         try {
-            const response = await fetch('https://your-vercel-app-url.vercel.app/api/chat', {
+            const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -69,7 +70,8 @@ async function sendMessage() {
             });
             
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await response.json();
+                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
             }
             
             const data = await response.json();
@@ -83,9 +85,10 @@ async function sendMessage() {
         } catch (error) {
             removeTypingIndicator();
             addMessage('ai', `Sorry, I encountered an error: ${error.message}`);
-            console.error('Error:', error);
+            console.error('API Error:', error);
         } finally {
             isTyping = false;
+            sendButton.disabled = false; // Re-enable the button after processing
         }
     }
 }
