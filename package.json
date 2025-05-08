@@ -1,7 +1,7 @@
 {
-  "name": "Chaitanya GPT",
+  "name": "chaitanya-gpt",
   "version": "1.0.0",
-  "description": "AI Chatbot with OpenAI API",
+  "description": "Chaitanya GPT - AI Assistant",
   "scripts": {
     "dev": "vercel dev",
     "start": "vercel start",
