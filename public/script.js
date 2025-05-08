@@ -58,7 +58,7 @@ async function sendMessage() {
         isTyping = true;
         
         try {
-            const response = await fetch('/api/chat', {
+            const response = await fetch('https://your-vercel-app-url.vercel.app/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,7 +89,6 @@ async function sendMessage() {
         }
     }
 }
-
 // Event listeners
 sendButton.addEventListener('click', sendMessage);
 userInput.addEventListener('keypress', (e) => {
